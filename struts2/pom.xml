@@ -20,4 +20,8 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>struts</finalName>
+    </build>
+
 </project>

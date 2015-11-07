@@ -29,4 +29,8 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>jsr371</finalName>
+    </build>
+
 </project>
