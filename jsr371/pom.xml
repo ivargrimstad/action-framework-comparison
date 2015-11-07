@@ -31,6 +31,18 @@
 
     <build>
         <finalName>jsr371</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.glassfish.embedded</groupId>
+                <artifactId>maven-embedded-glassfish-plugin</artifactId>
+                <configuration>
+                    <app>target/jsr371.war</app>
+                    <port>8080</port>
+                    <contextRoot>${project.build.finalName}</contextRoot>
+                    <autoDelete>true</autoDelete>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 
 </project>

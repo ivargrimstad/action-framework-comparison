@@ -16,6 +16,7 @@
         </license>
     </licenses>
     <scm>
+        <url>https://github.com/rgielen/action-framework-comparison</url>
         <connection>scm:git:https://github.com/rgielen/action-framework-comparison.git</connection>
         <developerConnection>scm:git:ssh://git@github.com:rgielen/action-framework-comparison.git</developerConnection>
         <tag>HEAD</tag>
@@ -33,6 +34,7 @@
         <spring.version>4.1.7.RELEASE</spring.version>
         <thymeleaf.version>2.1.4.RELEASE</thymeleaf.version>
         <struts2.version>2.3.24.1</struts2.version>
+        <glassfish.version>4.1.1</glassfish.version>
     </properties>
 
     <dependencyManagement>
@@ -154,6 +156,29 @@
                         <source>${java.level}</source>
                         <target>${java.level}</target>
                     </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.glassfish.embedded</groupId>
+                    <artifactId>maven-embedded-glassfish-plugin</artifactId>
+                    <version>${glassfish.version}</version>
+                    <configuration>
+                        <app>target/${project.build.finalName}</app>
+                        <port>8080</port>
+                        <contextRoot>${project.build.finalName}</contextRoot>
+                        <autoDelete>true</autoDelete>
+                    </configuration>
+                    <dependencies>
+                        <dependency>
+                            <groupId>org.glassfish.main.common</groupId>
+                            <artifactId>simple-glassfish-api</artifactId>
+                            <version>${glassfish.version}</version>
+                        </dependency>
+                        <dependency>
+                            <groupId>org.glassfish.main.extras</groupId>
+                            <artifactId>glassfish-embedded-all</artifactId>
+                            <version>${glassfish.version}</version>
+                        </dependency>
+                    </dependencies>
                 </plugin>
             </plugins>
         </pluginManagement>
