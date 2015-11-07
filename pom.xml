@@ -17,6 +17,7 @@
     </modules>
 
     <properties>
+        <java.level>1.8</java.level>
         <spring.version>4.1.7.RELEASE</spring.version>
     </properties>
 
@@ -70,6 +71,15 @@
                     <version>2.6</version>
                     <configuration>
                         <failOnMissingWebXml>false</failOnMissingWebXml>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.3</version>
+                    <configuration>
+                        <source>${java.level}</source>
+                        <target>${java.level}</target>
                     </configuration>
                 </plugin>
             </plugins>
