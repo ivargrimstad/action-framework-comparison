@@ -1,7 +1,8 @@
-package net.rgielen.action.service;
+package net.rgielen.actionframeworks.service;
 
-import net.rgielen.action.domain.Person;
+import net.rgielen.actionframeworks.domain.Person;
 
+import javax.annotation.PostConstruct;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import java.util.HashSet;
@@ -39,5 +40,13 @@ public class PersonService {
     public List<Person> findAll() {
         return persons.stream().sorted((p1, p2) -> p1.getLastname().compareTo(p2.getLastname())).collect(toList());
     }
+
+    @PostConstruct
+    protected void addSampleData() {
+        save(new Person("Arnold", "Schwarzenegger"));
+        save(new Person("Bruce", "Willis"));
+        save(new Person("Daniel", "Craig"));
+    }
+
 
 }

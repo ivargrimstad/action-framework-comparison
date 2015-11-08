@@ -1,7 +1,6 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Ivar Grimstad <ivar.grimstad@gmail.com>.
  * Copyright 2015 Rene Gielen (rene.gielen@gmail.com).
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,28 +21,38 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.rgielen.action.jsr371.config;
+package net.rgielen.actionframeworks.jsr371.controller;
 
-import net.rgielen.action.jsr371.controller.HelloController;
-import net.rgielen.action.jsr371.controller.MainController;
-
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
-import java.util.HashSet;
-import java.util.Set;
+import javax.inject.Inject;
+import javax.mvc.Models;
+import javax.mvc.annotation.Controller;
+import javax.mvc.annotation.View;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 /**
+ * Simple Hello controller.
+ *
  * @author Rene Gielen
  */
-@ApplicationPath("/")
-public class ApplicationConfig extends Application {
+@Path("hello")
+@Controller
+public class HelloController {
 
-    @Override
-    public Set<Class<?>> getClasses() {
-        final Set<Class<?>> set = new HashSet<>();
-        set.add(HelloController.class);
-        set.add(MainController.class);
-        return set;
+    @Inject
+    private Models models;
+
+    @GET
+    @Path("{name}")
+    @View("hello.jsp")
+    public void helloNamed(@PathParam("name") String name) {
+        models.put("name", name);
+    }
+
+    @GET
+    @View("hello.jsp")
+    public void hello() {
     }
 
 }

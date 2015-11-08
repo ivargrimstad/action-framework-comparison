@@ -21,8 +21,9 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.rgielen.action.springmvc;
+package net.rgielen.actionframeworks.springmvc;
 
+import net.rgielen.actionframeworks.service.PersonService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +37,7 @@ import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
  * @author Rene Gielen
  */
 @Configuration
-@ComponentScan
+@ComponentScan(basePackageClasses = {ApplicationConfig.class, PersonService.class})
 @EnableWebMvc
 public class ApplicationConfig extends WebMvcConfigurerAdapter {
 

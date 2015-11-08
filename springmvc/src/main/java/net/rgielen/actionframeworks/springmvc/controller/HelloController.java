@@ -21,16 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.rgielen.action.struts2;
+package net.rgielen.actionframeworks.springmvc.controller;
 
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @author Rene Gielen
  */
-@Configuration
-@ComponentScan
-public class ApplicationConfig {
+@Controller
+@RequestMapping("hello")
+public class HelloController {
+
+    @RequestMapping
+    public String hello() {
+        return "hello";
+    }
 
 }

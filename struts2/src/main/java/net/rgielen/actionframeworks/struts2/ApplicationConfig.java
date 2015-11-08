@@ -21,38 +21,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.rgielen.action.jsr371.controller;
+package net.rgielen.actionframeworks.struts2;
 
-import javax.inject.Inject;
-import javax.mvc.Models;
-import javax.mvc.annotation.Controller;
-import javax.mvc.annotation.View;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import net.rgielen.actionframeworks.service.PersonService;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
 
 /**
- * Simple Hello controller.
- *
  * @author Rene Gielen
  */
-@Path("hello")
-@Controller
-public class HelloController {
-
-    @Inject
-    private Models models;
-
-    @GET
-    @Path("{name}")
-    @View("hello.jsp")
-    public void helloNamed(@PathParam("name") String name) {
-        models.put("name", name);
-    }
-
-    @GET
-    @View("hello.jsp")
-    public void hello() {
-    }
+@Configuration
+@ComponentScan(basePackageClasses = {ApplicationConfig.class, PersonService.class})
+public class ApplicationConfig {
 
 }

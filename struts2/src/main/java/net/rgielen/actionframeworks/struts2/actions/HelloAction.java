@@ -1,4 +1,4 @@
-package net.rgielen.action.struts2.actions;
+package net.rgielen.actionframeworks.struts2.actions;
 
 /**
  * HelloAction.

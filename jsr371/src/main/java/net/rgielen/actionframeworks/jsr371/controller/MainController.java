@@ -21,7 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.rgielen.action.jsr371.controller;
+package net.rgielen.actionframeworks.jsr371.controller;
 
 import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.View;

@@ -1,6 +1,7 @@
 /*
  * The MIT License
  *
+ * Copyright 2015 Ivar Grimstad <ivar.grimstad@gmail.com>.
  * Copyright 2015 Rene Gielen (rene.gielen@gmail.com).
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -21,21 +22,28 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.rgielen.action.springmvc.controller;
+package net.rgielen.actionframeworks.jsr371.config;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import net.rgielen.actionframeworks.jsr371.controller.HelloController;
+import net.rgielen.actionframeworks.jsr371.controller.MainController;
+
+import javax.ws.rs.ApplicationPath;
+import javax.ws.rs.core.Application;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * @author Rene Gielen
  */
-@Controller
-@RequestMapping("hello")
-public class HelloController {
+@ApplicationPath("/")
+public class ApplicationConfig extends Application {
 
-    @RequestMapping
-    public String hello() {
-        return "hello";
+    @Override
+    public Set<Class<?>> getClasses() {
+        final Set<Class<?>> set = new HashSet<>();
+        set.add(HelloController.class);
+        set.add(MainController.class);
+        return set;
     }
 
 }

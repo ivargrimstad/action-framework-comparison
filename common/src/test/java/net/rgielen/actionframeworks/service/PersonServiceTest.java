@@ -1,6 +1,6 @@
-package net.rgielen.action.service;
+package net.rgielen.actionframeworks.service;
 
-import net.rgielen.action.domain.Person;
+import net.rgielen.actionframeworks.domain.Person;
 import org.junit.Before;
 import org.junit.Test;
 

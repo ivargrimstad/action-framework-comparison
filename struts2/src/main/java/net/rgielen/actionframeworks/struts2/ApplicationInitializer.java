@@ -1,7 +1,7 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Ivar Grimstad (ivar.grimstad@gmail.com).
+ * Copyright 2015 Ivar Grimstad <ivar.grimstad@gmail.com>.
  * Copyright 2015 Rene Gielen (rene.gielen@gmail.com).
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,17 +22,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.rgielen.action.springmvc;
+package net.rgielen.actionframeworks.struts2;
 
+import org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
-import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
-import org.springframework.web.servlet.DispatcherServlet;
 
+import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.ServletRegistration;
 
 /**
  * @author Rene Gielen
@@ -45,11 +44,9 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         context.register(ApplicationConfig.class);
         servletContext.addListener(new ContextLoaderListener(context));
 
-        ServletRegistration.Dynamic registration =
-                servletContext.addServlet("dispatcher", new DispatcherServlet(context));
-        registration.setLoadOnStartup(1);
-        registration.addMapping("/");
-
+        final FilterRegistration.Dynamic struts =
+                servletContext.addFilter("struts", new StrutsPrepareAndExecuteFilter());
+        struts.addMappingForUrlPatterns(null, false, "/*");
     }
 
 }
