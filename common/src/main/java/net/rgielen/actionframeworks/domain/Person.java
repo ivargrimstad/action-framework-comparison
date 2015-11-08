@@ -40,7 +40,7 @@ public class Person {
     @NotNull @Size(min = 2)
     private String lastname;
     private Integer rank;
-    private boolean friend;
+    private boolean cool;
     private Date birthday;
     private Float salary;
 
@@ -90,12 +90,12 @@ public class Person {
         this.rank = rank;
     }
 
-    public boolean isFriend() {
-        return friend;
+    public boolean isCool() {
+        return cool;
     }
 
-    public void setFriend(boolean friend) {
-        this.friend = friend;
+    public void setCool(boolean cool) {
+        this.cool = cool;
     }
 
     public Date getBirthday() {
