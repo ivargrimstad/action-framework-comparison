@@ -15,8 +15,13 @@
 
     <dependencies>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>action-framework-comparison-common</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-web-api</artifactId>
         </dependency>
 
         <dependency>
@@ -31,7 +36,10 @@
             <groupId>org.apache.struts</groupId>
             <artifactId>struts2-spring-plugin</artifactId>
         </dependency>
-
+        <dependency>
+            <groupId>com.github.umeshawasthi</groupId>
+            <artifactId>struts2-jsr303-validation-plugin</artifactId>
+        </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
