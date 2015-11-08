@@ -54,7 +54,7 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);
 
         FilterRegistration.Dynamic characterEncoding = servletContext.addFilter("characterEncoding", characterEncodingFilter);
-        characterEncoding.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
+        characterEncoding.addMappingForUrlPatterns(dispatcherTypes, false, "/*");
 
         final FilterRegistration.Dynamic struts =
                 servletContext.addFilter("struts", new StrutsPrepareAndExecuteFilter());
