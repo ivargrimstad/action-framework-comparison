@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib prefix="sb" uri="/struts-bootstrap-tags" %>
 <html>
 <head>
     <title>Struts 2 - Show/Edit Person</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <sb:head/>
 </head>
 <body>
 
