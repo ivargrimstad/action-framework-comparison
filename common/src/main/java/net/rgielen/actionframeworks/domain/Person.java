@@ -25,6 +25,7 @@ package net.rgielen.actionframeworks.domain;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.Date;
 
 /**
  * Person.
@@ -34,9 +35,14 @@ import javax.validation.constraints.Size;
 public class Person {
 
     private String id;
+    @NotNull @Size(min = 2)
     private String firstname;
     @NotNull @Size(min = 2)
     private String lastname;
+    private Integer rank;
+    private boolean friend;
+    private Date birthday;
+    private Float salary;
 
     public Person() {
     }
@@ -74,6 +80,38 @@ public class Person {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
+    }
+
+    public Integer getRank() {
+        return rank;
+    }
+
+    public void setRank(Integer rank) {
+        this.rank = rank;
+    }
+
+    public boolean isFriend() {
+        return friend;
+    }
+
+    public void setFriend(boolean friend) {
+        this.friend = friend;
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public Float getSalary() {
+        return salary;
+    }
+
+    public void setSalary(Float salary) {
+        this.salary = salary;
     }
 
     @Override
