@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC
         "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
-        "http://struts.apache.org/dtds/struts-2.1.dtd">
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
 
     <constant name="struts.actions.extension" value=",,actions"/>
+    <constant name="struts.convention.package.locators" value="actions"/>
+    <constant name="struts.convention.default.parent.package" value="demo-package" />
 
     <!-- Optimized developer options -->
     <constant name="struts.devMode" value="true"/>
@@ -14,9 +16,43 @@
 
     <!-- Chose a different default theme -->
     <!--
-    <constant name="struts.convention.default.parent.package" value="someParent" />
     <constant name="struts.ui.theme" value="bootstrap" />
     -->
 
+    <!-- This is an example how the framework can be reconfigured using interceptors -->
+    <package name="demo-package" extends="jsr303">
+        <interceptors>
+            <interceptor-stack name="enhanced-defaultStack">
+                <interceptor-ref name="exception"/>
+                <interceptor-ref name="alias"/>
+                <interceptor-ref name="servletConfig"/>
+                <interceptor-ref name="i18n"/>
+                <interceptor-ref name="prepare"/>
+                <interceptor-ref name="chain"/>
+                <interceptor-ref name="scopedModelDriven"/>
+                <interceptor-ref name="modelDriven"/>
+                <interceptor-ref name="fileUpload"/>
+                <interceptor-ref name="checkbox"/>
+                <interceptor-ref name="datetime"/>
+                <interceptor-ref name="multiselect"/>
+                <interceptor-ref name="staticParams"/>
+                <interceptor-ref name="actionMappingParams"/>
+                <interceptor-ref name="params"/>
+                <interceptor-ref name="conversionError"/>
+                <interceptor-ref name="validation">
+                    <param name="excludeMethods">get,input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="beanValidation">
+                    <param name="excludeMethods">get,input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="workflow">
+                    <param name="excludeMethods">get,input,back,cancel,browse</param>
+                </interceptor-ref>
+                <interceptor-ref name="debugging"/>
+                <interceptor-ref name="deprecation"/>
+            </interceptor-stack>
+        </interceptors>
+        <default-interceptor-ref name="enhanced-defaultStack"/>
+    </package>
 
 </struts>
