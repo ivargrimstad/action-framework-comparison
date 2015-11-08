@@ -25,7 +25,6 @@
 package net.rgielen.actionframeworks.jsr371.config;
 
 import net.rgielen.actionframeworks.jsr371.controller.HelloController;
-import net.rgielen.actionframeworks.jsr371.controller.MainController;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
@@ -33,16 +32,18 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * Register MVC Controllers under prefix /mvc.
+ * Using root context will unfortunaltely keep us from using JAR resources such as webjars.
+ *
  * @author Rene Gielen
  */
-@ApplicationPath("/")
+@ApplicationPath("/mvc")
 public class ApplicationConfig extends Application {
 
     @Override
     public Set<Class<?>> getClasses() {
         final Set<Class<?>> set = new HashSet<>();
         set.add(HelloController.class);
-        set.add(MainController.class);
         return set;
     }
 
