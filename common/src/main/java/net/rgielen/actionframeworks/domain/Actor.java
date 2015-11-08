@@ -28,11 +28,11 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 /**
- * Person.
+ * Actor domain object.
  *
  * @author Rene Gielen
  */
-public class Person {
+public class Actor {
 
     private String id;
     @NotNull @Size(min = 2)
@@ -44,15 +44,15 @@ public class Person {
     private Date birthday;
     private Float salary;
 
-    public Person() {
+    public Actor() {
     }
 
-    public Person(String firstname, String lastname) {
+    public Actor(String firstname, String lastname) {
         this.firstname = firstname;
         this.lastname = lastname;
     }
 
-    public Person(String id, String firstname, String lastname) {
+    public Actor(String id, String firstname, String lastname) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -117,11 +117,11 @@ public class Person {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Person)) return false;
+        if (!(o instanceof Actor)) return false;
 
-        Person person = (Person) o;
+        Actor actor = (Actor) o;
 
-        return !(id != null ? !id.equals(person.id) : person.id != null);
+        return !(id != null ? !id.equals(actor.id) : actor.id != null);
 
     }
 

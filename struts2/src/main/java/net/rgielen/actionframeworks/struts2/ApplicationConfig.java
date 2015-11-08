@@ -23,7 +23,7 @@
  */
 package net.rgielen.actionframeworks.struts2;
 
-import net.rgielen.actionframeworks.service.PersonService;
+import net.rgielen.actionframeworks.service.ActorService;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
@@ -31,7 +31,7 @@ import org.springframework.context.annotation.Configuration;
  * @author Rene Gielen
  */
 @Configuration
-@ComponentScan(basePackageClasses = {ApplicationConfig.class, PersonService.class})
+@ComponentScan(basePackageClasses = {ApplicationConfig.class, ActorService.class})
 public class ApplicationConfig {
 
 }
