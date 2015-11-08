@@ -5,7 +5,7 @@
 
 <struts>
 
-    <constant name="struts.actions.extension" value=",,actions"/>
+    <constant name="struts.action.extension" value=",,action"/>
     <constant name="struts.convention.package.locators" value="actions"/>
     <constant name="struts.convention.default.parent.package" value="demo-package" />
     <constant name="struts.enable.SlashesInActionNames" value="true"/>
