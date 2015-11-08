@@ -25,7 +25,7 @@ public class PersonService {
 
     public Person save(Person person) {
         if (person != null) {
-            if (person.getId() == null) {
+            if (person.getId() == null || person.getId().isEmpty()) {
                 person.setId(UUID.randomUUID().toString());
             }
             persons.add(person);

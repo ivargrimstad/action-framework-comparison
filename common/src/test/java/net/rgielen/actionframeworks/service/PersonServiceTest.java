@@ -28,6 +28,15 @@ public class PersonServiceTest {
     }
 
     @Test
+    public void testSaveCreatesNewIdWhenGivenIdIsEmpty() throws Exception {
+        final Person person = new Person("","foo", "bar");
+        assertThat(person.getId()).isEmpty();
+        personService.save(person);
+        assertThat(personService.persons).contains(person);
+        assertThat(person.getId()).isNotEmpty();
+    }
+
+    @Test
     public void testFindById() throws Exception {
         final Person person = new Person("123","foo", "bar");
         personService.save(person);
