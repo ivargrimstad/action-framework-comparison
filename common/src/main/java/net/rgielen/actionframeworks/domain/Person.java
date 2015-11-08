@@ -23,6 +23,9 @@
  */
 package net.rgielen.actionframeworks.domain;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * Person.
  *
@@ -32,6 +35,7 @@ public class Person {
 
     private String id;
     private String firstname;
+    @NotNull @Size(min = 2)
     private String lastname;
 
     public Person() {
