@@ -8,6 +8,9 @@
     <constant name="struts.actions.extension" value=",,actions"/>
     <constant name="struts.convention.package.locators" value="actions"/>
     <constant name="struts.convention.default.parent.package" value="demo-package" />
+    <constant name="struts.enable.SlashesInActionNames" value="true"/>
+    <constant name="struts.mapper.alwaysSelectFullNamespace" value="false"/>
+    <constant name="struts.patternMatcher" value="regex" />
 
     <!-- Optimized developer options -->
     <constant name="struts.devMode" value="true"/>
