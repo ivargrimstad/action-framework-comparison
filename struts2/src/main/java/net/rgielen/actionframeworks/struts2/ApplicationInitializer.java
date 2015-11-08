@@ -28,10 +28,13 @@ import org.apache.struts2.dispatcher.ng.filter.StrutsPrepareAndExecuteFilter;
 import org.springframework.web.WebApplicationInitializer;
 import org.springframework.web.context.ContextLoaderListener;
 import org.springframework.web.context.support.AnnotationConfigWebApplicationContext;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
+import javax.servlet.DispatcherType;
 import javax.servlet.FilterRegistration;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import java.util.EnumSet;
 
 /**
  * @author Rene Gielen
@@ -44,9 +47,18 @@ public class ApplicationInitializer implements WebApplicationInitializer {
         context.register(ApplicationConfig.class);
         servletContext.addListener(new ContextLoaderListener(context));
 
+        CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+
+        EnumSet<DispatcherType> dispatcherTypes = EnumSet.of(DispatcherType.REQUEST, DispatcherType.FORWARD);
+
+        FilterRegistration.Dynamic characterEncoding = servletContext.addFilter("characterEncoding", characterEncodingFilter);
+        characterEncoding.addMappingForUrlPatterns(dispatcherTypes, true, "/*");
+
         final FilterRegistration.Dynamic struts =
                 servletContext.addFilter("struts", new StrutsPrepareAndExecuteFilter());
-        struts.addMappingForUrlPatterns(null, false, "/*");
+        struts.addMappingForUrlPatterns(dispatcherTypes, false, "/*");
     }
 
 }
