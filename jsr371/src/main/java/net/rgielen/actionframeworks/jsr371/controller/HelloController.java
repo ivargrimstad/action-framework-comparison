@@ -44,15 +44,21 @@ public class HelloController {
     private Models models;
 
     @GET
+    @View("hello.jsp")
+    public void hello() {
+    }
+
+    @GET
+    @View("hello.xhtml")
+    @Path("faces")
+    public void helloFaces() {
+    }
+
+    @GET
     @Path("{name}")
     @View("hello.jsp")
     public void helloNamed(@PathParam("name") String name) {
         models.put("name", name);
-    }
-
-    @GET
-    @View("hello.jsp")
-    public void hello() {
     }
 
 }
