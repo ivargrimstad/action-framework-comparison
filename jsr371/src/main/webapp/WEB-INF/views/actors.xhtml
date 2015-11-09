@@ -1,0 +1,27 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:pf="http://primefaces.org/ui"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head jsf:id="head">
+    <title>JSR 371 + Facelets - Actors</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="${mvc.contextPath}/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
+</head>
+<body jsf:id="body">
+<div class="container-fluid">
+    <h1>Actors</h1>
+    <ul>
+    <ui:repeat value="#{actors}" var="actor">
+        <li>
+            <a href="actors/#{actor.id}">#{actor.firstname} #{actor.lastname}</a>
+        </li>
+    </ui:repeat>
+    </ul>
+    <a href="actors/new" class="btn btn-default" role="button">New</a>
+</div>
+<script src="${mvc.contextPath}/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
+</html>

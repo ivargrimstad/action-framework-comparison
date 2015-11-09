@@ -1,7 +1,6 @@
 /*
  * The MIT License
  *
- * Copyright 2015 Ivar Grimstad <ivar.grimstad@gmail.com>.
  * Copyright 2015 Rene Gielen (rene.gielen@gmail.com).
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -22,31 +21,46 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package net.rgielen.actionframeworks.jsr371.config;
+package net.rgielen.actionframeworks.jsr371.controller;
 
-import net.rgielen.actionframeworks.jsr371.controller.ActorsController;
-import net.rgielen.actionframeworks.jsr371.controller.HelloController;
+import net.rgielen.actionframeworks.service.ActorService;
 
-import javax.ws.rs.ApplicationPath;
-import javax.ws.rs.core.Application;
-import java.util.HashSet;
-import java.util.Set;
+import javax.inject.Inject;
+import javax.mvc.Models;
+import javax.mvc.annotation.Controller;
+import javax.mvc.annotation.View;
+import javax.ws.rs.FormParam;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 
 /**
- * Register MVC Controllers under prefix /mvc.
- * Using root context will unfortunaltely keep us from using JAR resources such as webjars.
+ * ActorsController.
  *
  * @author Rene Gielen
  */
-@ApplicationPath("/mvc")
-public class ApplicationConfig extends Application {
+@Controller
+@Path("actors")
+public class ActorsController {
 
-    @Override
-    public Set<Class<?>> getClasses() {
-        final Set<Class<?>> set = new HashSet<>();
-        set.add(HelloController.class);
-        set.add(ActorsController.class);
-        return set;
+    @Inject
+    private Models models;
+
+    @Inject
+    private ActorService actorService;
+
+    @GET
+    @View("actors.xhtml")
+    public void actors() {
+        models.put("actors", actorService.findAll());
     }
+
+    @GET
+    @View("actor.xhtml")
+    @Path("{id}")
+    public void actor(@PathParam("id") String id) {
+        models.put("actor", actorService.findById(id));
+    }
+
 
 }
