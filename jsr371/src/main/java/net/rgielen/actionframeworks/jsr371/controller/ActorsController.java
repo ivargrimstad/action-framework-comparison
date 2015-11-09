@@ -23,16 +23,14 @@
  */
 package net.rgielen.actionframeworks.jsr371.controller;
 
+import net.rgielen.actionframeworks.domain.Actor;
 import net.rgielen.actionframeworks.service.ActorService;
 
 import javax.inject.Inject;
 import javax.mvc.Models;
 import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.View;
-import javax.ws.rs.FormParam;
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
+import javax.ws.rs.*;
 
 /**
  * ActorsController.
@@ -57,9 +55,32 @@ public class ActorsController {
 
     @GET
     @View("actor.xhtml")
+    @Path("new")
+    public void newActor() {
+        models.put("actor", new Actor());
+    }
+
+    @GET
+    @View("actor.xhtml")
     @Path("{id}")
     public void actor(@PathParam("id") String id) {
         models.put("actor", actorService.findById(id));
+    }
+
+    @POST
+    @Path("new")
+    public String create(@BeanParam Actor actor) {
+        actorService.save(actor);
+        models.put("actor", actor);
+        return "redirect:actors/" + actor.getId();
+    }
+
+    @POST
+    @Path("{id}")
+    public String update(@BeanParam Actor actor, @PathParam("id") String id) {
+        actorService.save(actor);
+        models.put("actor", actor);
+        return "redirect:actors/" + actor.getId();
     }
 
 
