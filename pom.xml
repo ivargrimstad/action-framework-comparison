@@ -126,6 +126,12 @@
                 <groupId>com.github.umeshawasthi</groupId>
                 <artifactId>struts2-jsr303-validation-plugin</artifactId>
                 <version>1.0</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>javax.validation</groupId>
+                        <artifactId>validation-api</artifactId>
+                    </exclusion>
+                </exclusions>
             </dependency>
             <dependency>
                 <groupId>com.jgeppert.struts2.bootstrap</groupId>
