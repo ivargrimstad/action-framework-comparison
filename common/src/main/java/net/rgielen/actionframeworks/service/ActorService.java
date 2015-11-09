@@ -28,6 +28,7 @@ public class ActorService {
             if (actor.getId() == null || actor.getId().isEmpty()) {
                 actor.setId(UUID.randomUUID().toString());
             }
+            actors.remove(actor);
             actors.add(actor);
         }
         return actor;
