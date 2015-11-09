@@ -11,23 +11,51 @@
 <div class="container-fluid">
     <form th:object="${actor}" method="post" class="form-horizontal">
         <fieldset>
-            <legend>Actor Information</legend>
+            <legend th:text="#{actor.information}">Actor Information</legend>
             <input type="hidden" th:field="*{id}"/>
-            <div class="form-group ">
+            <div class="form-group" th:classappend="${#fields.hasErrors('firstname')}? has-error">
                 <label class="col-sm-3 control-label" th:for="${#ids.next('firstname')}"
-                       th:text="#{actor.firstname}">First Name</label>
+                       th:text="#{firstname}">First Name</label>
                 <div class="col-sm-9 controls">
                     <input type="text" th:field="*{firstname}" class="form-control"/>
+                    <span th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}"
+                          class="help-block alert-danger">Invalid</span>
                 </div>
             </div>
-            <div class="form-group ">
+            <div class="form-group" th:classappend="${#fields.hasErrors('lastname')}? has-error">
                 <label class="col-sm-3 control-label" th:for="${#ids.next('lastname')}"
-                       th:text="#{actor.lastname}">Last Name</label>
+                       th:text="#{lastname}">Last Name</label>
                 <div class="col-sm-9 controls">
                     <input type="text" th:field="*{lastname}" class="form-control"/>
+                    <span th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}"
+                          class="help-block alert-danger">Invalid</span>
                 </div>
             </div>
-            <input type="submit" value="Save" class="btn btn-default"/>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" th:for="${#ids.next('cool')}"
+                       th:text="#{cool}">Cool</label>
+                <div class="col-sm-9 checkbox">
+                    <input type="checkbox" th:field="*{cool}" class=""/>
+                </div>
+            </div>
+            <!--
+            <div class="form-group">
+                <label class="col-sm-3 control-label" th:for="${#ids.next('birthday')}"
+                       th:text="#{birthday}">Birthday</label>
+                <div class="col-sm-9 controls">
+                    <input type="text" th:field="*{birthday}" class="form-control"/>
+                </div>
+            </div>
+            -->
+            <div class="form-group">
+                <label class="col-sm-3 control-label" th:for="${#ids.next('salary')}"
+                       th:text="#{salary}">Salary</label>
+                <div class="col-sm-9 controls">
+                    <input type="text" th:field="*{salary}" class="form-control"/>
+                </div>
+            </div>
+            <input type="submit" th:value="#{save}" value="Save" class="btn btn-default"/>
+            <a href="#" th:href="@{/actors}" th:text="#{back.to.list}" class="btn" role="button">Back</a>
         </fieldset>
     </form>
 </div>

@@ -9,14 +9,14 @@
 <body>
 
 <div class="container-fluid">
-    <h1>Actors</h1>
+    <h1 th:text="#{actor.list}">Actors</h1>
     <ul th:each="actor : ${actors}">
         <li>
             <a href="actors" th:href="@{|actors/${actor.id}|}"
                th:text="|${actor.firstname} ${actor.lastname}|">John Doe</a>
         </li>
     </ul>
-    <a href="actors/new" class="btn btn-default" role="button">New</a>
+    <a href="actors/new" class="btn btn-default" role="button" th:text="#{new}">New</a>
 </div>
 </body>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"

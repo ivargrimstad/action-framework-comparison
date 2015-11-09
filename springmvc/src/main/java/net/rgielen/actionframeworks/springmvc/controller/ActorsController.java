@@ -27,10 +27,12 @@ import net.rgielen.actionframeworks.domain.Actor;
 import net.rgielen.actionframeworks.service.ActorService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.inject.Inject;
+import javax.validation.Valid;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import static org.springframework.web.bind.annotation.RequestMethod.POST;
@@ -66,16 +68,19 @@ public class ActorsController {
     }
 
     @RequestMapping(method = POST, value = "new")
-    public String create(Actor actor, Model model) {
-        return saveAndRedirect(actor, model);
+    public String create(@Valid Actor actor, Errors errors, Model model) {
+        return saveAndRedirect(actor, model, errors);
     }
 
     @RequestMapping(method = POST, value = "{id}")
-    public String update(Actor actor, @PathVariable String id, Model model) {
-        return saveAndRedirect(actor, model);
+    public String update(@Valid Actor actor, Errors errors, @PathVariable String id, Model model) {
+        return saveAndRedirect(actor, model, errors);
     }
 
-    private String saveAndRedirect(Actor actor, Model model) {
+    private String saveAndRedirect(Actor actor, Model model, Errors errors) {
+        if (errors.hasErrors()) {
+            return "actor";
+        }
         actorService.save(actor);
         model.addAttribute("actor", actor);
         return "redirect:" + actor.getId();
