@@ -42,7 +42,7 @@ public class Actor {
     private Integer rank;
     private boolean cool;
     private Date birthday;
-    private Float salary;
+    private float salary;
 
     public Actor() {
     }
@@ -106,11 +106,11 @@ public class Actor {
         this.birthday = birthday;
     }
 
-    public Float getSalary() {
+    public float getSalary() {
         return salary;
     }
 
-    public void setSalary(Float salary) {
+    public void setSalary(float salary) {
         this.salary = salary;
     }
 
