@@ -11,6 +11,8 @@ import javax.validation.Valid;
 
 /**
  * Action to deal with single resource semantics for actors.
+ * Namespaces and view locations are determined by convention, see
+ * https://struts.apache.org/docs/convention-plugin.html
  *
  * @author Rene Gielen
  */
