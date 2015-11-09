@@ -19,6 +19,7 @@
         <s:hidden name="actor.id"/>
         <s:textfield key="actor.firstname" />
         <s:textfield key="actor.lastname"/>
+        <s:checkbox key="actor.cool"/>
         <s:textfield key="actor.birthday"/>
         <s:textfield key="actor.salary" value="%{getFormatted('format.money','actor.salary')}"/>
         <%-- Alternatively: use datepicker
