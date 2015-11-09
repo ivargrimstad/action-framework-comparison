@@ -25,6 +25,7 @@ package net.rgielen.actionframeworks.domain;
 
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.ws.rs.FormParam;
 import java.util.Date;
 
 /**
@@ -34,15 +35,23 @@ import java.util.Date;
  */
 public class Actor {
 
+    @FormParam("id")
     private String id;
+
     @NotNull @Size(min = 2)
+    @FormParam("firstname")
     private String firstname;
+
     @NotNull @Size(min = 2)
+    @FormParam("lastname")
     private String lastname;
-    private Integer rank;
+
+    @FormParam("cool")
     private boolean cool;
+
+    private Integer rank;
     private Date birthday;
-    private float salary;
+    private Float salary = 0f;
 
     public Actor() {
     }
@@ -106,11 +115,11 @@ public class Actor {
         this.birthday = birthday;
     }
 
-    public float getSalary() {
+    public Float getSalary() {
         return salary;
     }
 
-    public void setSalary(float salary) {
+    public void setSalary(Float salary) {
         this.salary = salary;
     }
 
