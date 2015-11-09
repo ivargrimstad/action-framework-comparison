@@ -1,0 +1,24 @@
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Spring+Thymeleaf - Actors</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"
+          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="container-fluid">
+    <h1>Actors</h1>
+    <ul th:each="actor : ${actors}">
+        <li>
+            <a href="actors" th:href="@{|actors/${actor.id}|}"
+               th:text="|${actor.firstname} ${actor.lastname}|">John Doe</a>
+        </li>
+    </ul>
+    <a href="actors/new" class="btn btn-default" role="button">New</a>
+</div>
+</body>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"
+        th:src="@{webjars/bootstrap/3.3.5/js/bootstrap.min.js}"></script>
+</html>
