@@ -1,0 +1,9 @@
+= A Comparison of Action Based MVC Frameworks
+
+Action bases frameworks compared to each other for demo purposes.
+
+== Frameworks
+
+- link:https://java.net/projects/mvc-spec/pages/Home[MVC 1.0 (JSR 371)]
+- link:http://projects.spring.io/spring-framework/[Spring MVC]
+- link:http://struts.apache.org/[Apache Struts 2]
