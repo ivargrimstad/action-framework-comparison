@@ -24,29 +24,38 @@
  */
 package net.rgielen.actionframeworks.jsr371.config;
 
+import java.util.HashMap;
 import net.rgielen.actionframeworks.jsr371.controller.ActorsController;
 import net.rgielen.actionframeworks.jsr371.controller.HelloController;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import javax.mvc.security.Csrf;
 
 /**
- * Register MVC Controllers under prefix /mvc.
- * Using root context will unfortunaltely keep us from using JAR resources such as webjars.
+ * Register MVC Controllers under prefix /mvc. Using root context will unfortunaltely keep us from using JAR resources
+ * such as webjars.
  *
  * @author Rene Gielen
  */
 @ApplicationPath("/mvc")
 public class ApplicationConfig extends Application {
 
-    @Override
-    public Set<Class<?>> getClasses() {
-        final Set<Class<?>> set = new HashSet<>();
-        set.add(HelloController.class);
-        set.add(ActorsController.class);
-        return set;
-    }
+   @Override
+   public Set<Class<?>> getClasses() {
+      final Set<Class<?>> set = new HashSet<>();
+      set.add(HelloController.class);
+      set.add(ActorsController.class);
+      return set;
+   }
 
+   @Override
+   public Map<String, Object> getProperties() {
+      final Map<String, Object> map = new HashMap<>();
+      map.put(Csrf.CSRF_PROTECTION, Csrf.CsrfOptions.EXPLICIT);
+      return map;
+   }
 }
