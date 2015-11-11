@@ -5,45 +5,45 @@
       xmlns:pf="http://primefaces.org/ui"
       xmlns:jsf="http://xmlns.jcp.org/jsf"
       xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core">
-   <head jsf:id="head">
-      <title>JSR 371 + Facelets - Actor</title>
-      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-      <link rel="stylesheet" type="text/css" href="${mvc.contextPath}/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
-   </head>
-   <body jsf:id="body">
-      <div class="container-fluid">
-         <form jsf:id="form" class="form-horizontal" jsf:prependId="false" action="">
-            <fieldset>
-               <legend>Actor Information</legend>
-               <h:inputHidden id="id" value="${actor.id}"/>
+<head jsf:id="head">
+    <title>JSR 371 + Facelets - Actor</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" type="text/css" href="${mvc.contextPath}/webjars/bootstrap/3.3.5/css/bootstrap.min.css"/>
+</head>
+<body jsf:id="body">
+<div class="container-fluid">
+    <form jsf:id="form" class="form-horizontal" jsf:prependId="false" action="">
+        <fieldset>
+            <legend>Actor Information</legend>
+            <h:inputHidden id="id" value="${actor.id}"/>
 
-               <div class="form-group">
-                  <h:outputLabel value="First Name" for="firstname" styleClass="col-sm-3 control-label"/>
+            <div class="form-group">
+                <h:outputLabel value="First Name" for="firstname" styleClass="col-sm-3 control-label"/>
 
-                  <div class="col-sm-9 controls">
-                     <b:inputText id="firstname" value="${actor.firstname}" styleClass="form-control"/>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <h:outputLabel value="Last Name" for="lastname" styleClass="col-sm-3 control-label"/>
+                <div class="col-sm-9 controls">
+                    <b:inputText id="firstname" value="${actor.firstname}" styleClass="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel value="Last Name" for="lastname" styleClass="col-sm-3 control-label"/>
 
-                  <div class="col-sm-9 controls">
-                     <b:inputText id="lastname" value="${actor.lastname}" styleClass="form-control"/>
-                  </div>
-               </div>
-               <div class="form-group">
-                  <h:outputLabel value="Cool" for="cool" styleClass="col-sm-3 control-label"/>
+                <div class="col-sm-9 controls">
+                    <b:inputText id="lastname" value="${actor.lastname}" styleClass="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
+                <h:outputLabel value="Cool" for="cool" styleClass="col-sm-3 control-label"/>
 
-                  <div class="col-sm-9 checkbox">
-                     <b:selectBooleanCheckbox id="cool" value="${actor.cool}"/>
-                  </div>
-               </div>
-               <input type="hidden" name="${mvc.csrf.name}" value="${mvc.csrf.token}"/>
-               <input type="submit" value="Save" class="btn btn-default"/>
-               <a href="${mvc.contextPath}/mvc/actors" class="btn" role="button">Back to List</a>
-            </fieldset>
-         </form>
-      </div>
-      <script src="${mvc.contextPath}/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-   </body>
+                <div class="col-sm-9 checkbox">
+                    <b:selectBooleanCheckbox id="cool" value="${actor.cool}"/>
+                </div>
+            </div>
+            <input type="hidden" name="${mvc.csrf.name}" value="${mvc.csrf.token}"/>
+            <input type="submit" value="Save" class="btn btn-default"/>
+            <a href="${mvc.contextPath}/mvc/actors" class="btn" role="button">Back to List</a>
+        </fieldset>
+    </form>
+</div>
+<script src="${mvc.contextPath}/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+</body>
 </html>

@@ -24,6 +24,7 @@
 package net.rgielen.actionframeworks.jsr371.controller;
 
 import static java.util.stream.Collectors.toList;
+
 import net.rgielen.actionframeworks.domain.Actor;
 import net.rgielen.actionframeworks.service.ActorService;
 
@@ -38,6 +39,7 @@ import javax.validation.executable.ExecutableType;
 import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+
 import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
 /**
@@ -49,65 +51,65 @@ import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 @Path("actors")
 public class ActorsController {
 
-   @Inject
-   private Models models;
+    @Inject
+    private Models models;
 
-   @Inject
-   private ActorService actorService;
+    @Inject
+    private ActorService actorService;
 
-   @Inject
-   private BindingResult br;
+    @Inject
+    private BindingResult br;
 
-   @Inject
-   private ErrorDataBean errorDataBean;
+    @Inject
+    private ErrorDataBean errorDataBean;
 
-   @GET
-   @View("actors.xhtml")
-   public void actors() {
-      models.put("actors", actorService.findAll());
-   }
+    @GET
+    @View("actors.xhtml")
+    public void actors() {
+        models.put("actors", actorService.findAll());
+    }
 
-   @GET
-   @View("actor.xhtml")
-   @Path("new")
-   public void newActor() {
-      models.put("actor", new Actor());
-   }
+    @GET
+    @View("actor.xhtml")
+    @Path("new")
+    public void newActor() {
+        models.put("actor", new Actor());
+    }
 
-   @GET
-   @View("actor.xhtml")
-   @Path("{id}")
-   public void actor(@PathParam("id") String id) {
-      models.put("actor", actorService.findById(id));
-   }
+    @GET
+    @View("actor.xhtml")
+    @Path("{id}")
+    public void actor(@PathParam("id") String id) {
+        models.put("actor", actorService.findById(id));
+    }
 
-   @CsrfValid
-   @POST
-   @Path("new")
-   @ValidateOnExecution(type = ExecutableType.NONE)
-   public Response create(@Valid @BeanParam Actor actor) {
+    @CsrfValid
+    @POST
+    @Path("new")
+    @ValidateOnExecution(type = ExecutableType.NONE)
+    public Response create(@Valid @BeanParam Actor actor) {
 
-      if (br.isFailed()) {
+        if (br.isFailed()) {
 
-         errorDataBean.setMessages(
-                 br.getAllViolations().stream()
-                 .map(v -> v.getMessage())
-                 .collect(toList()));
+            errorDataBean.setMessages(
+                    br.getAllViolations().stream()
+                            .map(v -> v.getMessage())
+                            .collect(toList()));
 
-         return Response.status(BAD_REQUEST).entity("error.jsp").build();
-      }
+            return Response.status(BAD_REQUEST).entity("error.jsp").build();
+        }
 
-      actorService.save(actor);
-      models.put("actor", actor);
-      return Response.ok("redirect:actors/" + actor.getId()).build();
-   }
+        actorService.save(actor);
+        models.put("actor", actor);
+        return Response.ok("redirect:actors/" + actor.getId()).build();
+    }
 
-   @POST
-   @Path("{id}")
-   public String update(@BeanParam Actor actor, @PathParam("id") String id) {
-      actorService.save(actor);
-      models.put("actor", actor);
-      return "redirect:actors/" + actor.getId();
-   }
+    @POST
+    @Path("{id}")
+    public String update(@BeanParam Actor actor, @PathParam("id") String id) {
+        actorService.save(actor);
+        models.put("actor", actor);
+        return "redirect:actors/" + actor.getId();
+    }
 
 }

@@ -25,6 +25,7 @@
 package net.rgielen.actionframeworks.jsr371.config;
 
 import java.util.HashMap;
+
 import net.rgielen.actionframeworks.jsr371.controller.ActorsController;
 import net.rgielen.actionframeworks.jsr371.controller.HelloController;
 
@@ -44,18 +45,18 @@ import javax.mvc.security.Csrf;
 @ApplicationPath("/mvc")
 public class ApplicationConfig extends Application {
 
-   @Override
-   public Set<Class<?>> getClasses() {
-      final Set<Class<?>> set = new HashSet<>();
-      set.add(HelloController.class);
-      set.add(ActorsController.class);
-      return set;
-   }
+    @Override
+    public Set<Class<?>> getClasses() {
+        final Set<Class<?>> set = new HashSet<>();
+        set.add(HelloController.class);
+        set.add(ActorsController.class);
+        return set;
+    }
 
-   @Override
-   public Map<String, Object> getProperties() {
-      final Map<String, Object> map = new HashMap<>();
-      map.put(Csrf.CSRF_PROTECTION, Csrf.CsrfOptions.EXPLICIT);
-      return map;
-   }
+    @Override
+    public Map<String, Object> getProperties() {
+        final Map<String, Object> map = new HashMap<>();
+        map.put(Csrf.CSRF_PROTECTION, Csrf.CsrfOptions.EXPLICIT);
+        return map;
+    }
 }

@@ -14,11 +14,11 @@
 <div class="container-fluid">
     <h1>Actors</h1>
     <ul>
-    <ui:repeat value="#{actors}" var="actor">
-        <li>
-            <a href="actors/#{actor.id}">#{actor.firstname} #{actor.lastname}</a>
-        </li>
-    </ui:repeat>
+        <ui:repeat value="#{actors}" var="actor">
+            <li>
+                <a href="actors/#{actor.id}">#{actor.firstname} #{actor.lastname}</a>
+            </li>
+        </ui:repeat>
     </ul>
     <a href="actors/new" class="btn btn-default" role="button">New</a>
 </div>
