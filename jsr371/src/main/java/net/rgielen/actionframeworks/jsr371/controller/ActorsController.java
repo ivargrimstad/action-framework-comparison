@@ -30,6 +30,7 @@ import net.rgielen.actionframeworks.service.ActorService;
 import javax.inject.Inject;
 import javax.mvc.Models;
 import javax.mvc.annotation.Controller;
+import javax.mvc.annotation.CsrfValid;
 import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
 import javax.validation.Valid;
@@ -80,6 +81,7 @@ public class ActorsController {
       models.put("actor", actorService.findById(id));
    }
 
+   @CsrfValid
    @POST
    @Path("new")
    @ValidateOnExecution(type = ExecutableType.NONE)
