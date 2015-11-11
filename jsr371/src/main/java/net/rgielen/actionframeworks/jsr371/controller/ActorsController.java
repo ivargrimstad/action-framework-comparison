@@ -23,6 +23,7 @@
  */
 package net.rgielen.actionframeworks.jsr371.controller;
 
+import static java.util.stream.Collectors.toList;
 import net.rgielen.actionframeworks.domain.Actor;
 import net.rgielen.actionframeworks.service.ActorService;
 
@@ -30,7 +31,13 @@ import javax.inject.Inject;
 import javax.mvc.Models;
 import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.View;
+import javax.mvc.binding.BindingResult;
+import javax.validation.Valid;
+import javax.validation.executable.ExecutableType;
+import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.*;
+import javax.ws.rs.core.Response;
+import static javax.ws.rs.core.Response.Status.BAD_REQUEST;
 
 /**
  * ActorsController.
@@ -41,47 +48,64 @@ import javax.ws.rs.*;
 @Path("actors")
 public class ActorsController {
 
-    @Inject
-    private Models models;
+   @Inject
+   private Models models;
 
-    @Inject
-    private ActorService actorService;
+   @Inject
+   private ActorService actorService;
 
-    @GET
-    @View("actors.xhtml")
-    public void actors() {
-        models.put("actors", actorService.findAll());
-    }
+   @Inject
+   private BindingResult br;
 
-    @GET
-    @View("actor.xhtml")
-    @Path("new")
-    public void newActor() {
-        models.put("actor", new Actor());
-    }
+   @Inject
+   private ErrorDataBean errorDataBean;
 
-    @GET
-    @View("actor.xhtml")
-    @Path("{id}")
-    public void actor(@PathParam("id") String id) {
-        models.put("actor", actorService.findById(id));
-    }
+   @GET
+   @View("actors.xhtml")
+   public void actors() {
+      models.put("actors", actorService.findAll());
+   }
 
-    @POST
-    @Path("new")
-    public String create(@BeanParam Actor actor) {
-        actorService.save(actor);
-        models.put("actor", actor);
-        return "redirect:actors/" + actor.getId();
-    }
+   @GET
+   @View("actor.xhtml")
+   @Path("new")
+   public void newActor() {
+      models.put("actor", new Actor());
+   }
 
-    @POST
-    @Path("{id}")
-    public String update(@BeanParam Actor actor, @PathParam("id") String id) {
-        actorService.save(actor);
-        models.put("actor", actor);
-        return "redirect:actors/" + actor.getId();
-    }
+   @GET
+   @View("actor.xhtml")
+   @Path("{id}")
+   public void actor(@PathParam("id") String id) {
+      models.put("actor", actorService.findById(id));
+   }
 
+   @POST
+   @Path("new")
+   @ValidateOnExecution(type = ExecutableType.NONE)
+   public Response create(@Valid @BeanParam Actor actor) {
+
+      if (br.isFailed()) {
+
+         errorDataBean.setMessages(
+                 br.getAllViolations().stream()
+                 .map(v -> v.getMessage())
+                 .collect(toList()));
+
+         return Response.status(BAD_REQUEST).entity("error.jsp").build();
+      }
+
+      actorService.save(actor);
+      models.put("actor", actor);
+      return Response.ok("redirect:actors/" + actor.getId()).build();
+   }
+
+   @POST
+   @Path("{id}")
+   public String update(@BeanParam Actor actor, @PathParam("id") String id) {
+      actorService.save(actor);
+      models.put("actor", actor);
+      return "redirect:actors/" + actor.getId();
+   }
 
 }

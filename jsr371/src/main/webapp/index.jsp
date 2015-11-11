@@ -13,6 +13,12 @@
     <ul>
         <li><a href="mvc/hello">Say Hello</a></li>
     </ul>
+    <ul>
+        <li><a href="mvc/hello/faces">Say Hello from Faces</a></li>
+    </ul>
+    <ul>
+        <li><a href="mvc/actors">Actors</a></li>
+    </ul>
 </div>
 <script src="${pageContext.request.contextPath}/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
