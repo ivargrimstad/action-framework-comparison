@@ -23,6 +23,7 @@
  */
 package net.rgielen.actionframeworks.domain;
 
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.ws.rs.FormParam;
@@ -49,6 +50,8 @@ public class Actor {
     @FormParam("cool")
     private boolean cool;
 
+    @FormParam("rank")
+    @Digits(integer = 10, fraction = 0)
     private Integer rank;
     private Date birthday;
     private Float salary = 0f;
