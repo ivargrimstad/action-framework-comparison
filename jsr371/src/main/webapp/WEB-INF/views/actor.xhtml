@@ -32,6 +32,13 @@
                 </div>
             </div>
             <div class="form-group">
+                <h:outputLabel value="Rank" for="rank" styleClass="col-sm-3 control-label"/>
+
+                <div class="col-sm-9 controls">
+                    <b:inputText id="rank" value="${actor.rank}" styleClass="form-control"/>
+                </div>
+            </div>
+            <div class="form-group">
                 <h:outputLabel value="Cool" for="cool" styleClass="col-sm-3 control-label"/>
 
                 <div class="col-sm-9 checkbox">
@@ -43,6 +50,11 @@
             <a href="${mvc.contextPath}/mvc/actors" class="btn" role="button">Back to List</a>
         </fieldset>
     </form>
+    <ul>
+    <ui:repeat var="error" value="#{errorDataBean.messages}">
+        <li>${mvc.encoders.html(error)}</li>
+    </ui:repeat>
+    </ul>
 </div>
 <script src="${mvc.contextPath}/webjars/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </body>
