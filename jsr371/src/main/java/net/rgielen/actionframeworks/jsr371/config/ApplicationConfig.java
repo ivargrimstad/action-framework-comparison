@@ -50,6 +50,7 @@ public class ApplicationConfig extends Application {
         final Set<Class<?>> set = new HashSet<>();
         set.add(HelloController.class);
         set.add(ActorsController.class);
+        set.add(BooleanParamConverterProvider.class);
         return set;
     }
 
