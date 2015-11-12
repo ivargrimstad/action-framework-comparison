@@ -34,6 +34,7 @@ import javax.mvc.annotation.Controller;
 import javax.mvc.annotation.CsrfValid;
 import javax.mvc.annotation.View;
 import javax.mvc.binding.BindingResult;
+import javax.validation.ConstraintViolation;
 import javax.validation.Valid;
 import javax.validation.executable.ExecutableType;
 import javax.validation.executable.ValidateOnExecution;
@@ -93,10 +94,9 @@ public class ActorsController {
 
             errorDataBean.setMessages(
                     br.getAllViolations().stream()
-                            .map(v -> v.getMessage())
+                            .map(ConstraintViolation::getMessage)
                             .collect(toList()));
-
-            return Response.status(BAD_REQUEST).entity("error.jsp").build();
+            return Response.status(BAD_REQUEST).entity("actor.xhtml").build();
         }
 
         actorService.save(actor);
